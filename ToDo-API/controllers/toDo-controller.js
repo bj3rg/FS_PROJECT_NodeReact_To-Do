@@ -101,11 +101,38 @@ exports.deleteToDo = (req, res, next) => {
     });
 };
 
-exports.findAllToDoByUserId = (req, res, next) => {
+// Unfinished todo
+exports.findUnfinishedToDo = (req, res, next) => {
   const { user_id } = req.params;
   ToDo.findAll({
     where: {
       user_id: user_id,
+      isDone: false,
+    },
+  })
+    .then((post) => {
+      if (!post || post.length === 0) {
+        return res.status(404).json({
+          message: "No post found",
+        });
+      }
+      return res.status(200).json({
+        post,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      next();
+    });
+};
+
+// Finished ToDO
+exports.findFinishedToDo = (req, res, next) => {
+  const { user_id } = req.params;
+  ToDo.findAll({
+    where: {
+      user_id: user_id,
+      isDone: true,
     },
   })
     .then((post) => {

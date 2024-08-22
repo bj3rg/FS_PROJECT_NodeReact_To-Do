@@ -6,7 +6,8 @@ const {
   updateToDo,
   deleteToDo,
   finishToDo,
-  findAllToDoByUserId,
+  findUnfinishedToDo,
+  findFinishedToDo,
 } = require("../../controllers/toDo-controller");
 
 router.post(
@@ -22,9 +23,14 @@ router.put(
 router.put("/finish/:id", [param("id").notEmpty().isUUID()], finishToDo);
 router.delete("/delete/:id", [param("id").notEmpty().isUUID()], deleteToDo);
 router.get(
-  "/find-all/:user_id",
+  "/find-unfinished/:user_id",
   [param("user_id").notEmpty().isUUID()],
-  findAllToDoByUserId
+  findUnfinishedToDo
+);
+router.get(
+  "/find-finished/:user_id",
+  [param("user_id").notEmpty().isUUID()],
+  findFinishedToDo
 );
 
 module.exports = router;

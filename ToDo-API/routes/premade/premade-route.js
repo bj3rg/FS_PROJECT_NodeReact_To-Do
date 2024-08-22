@@ -1,16 +1,19 @@
 const express = require("express");
 const router = express.Router();
+const { body, param } = require("express-validator");
 
 const {
-  createUser,
-  updateUser,
-  deleteUser,
-  findUser,
-} = require("../../controllers/user-controller");
+  createPremade,
+  updatePremade,
+  deleteAllPremade,
+  deletePremadeById,
+  findAllPremade,
+} = require("../../controllers/premade-controller");
 
-router.post("/create", createUser);
-router.put("/update", updateUser);
-router.delete("/delete", deleteUser);
-router.get("/find", findUser);
+router.post("/create", [body("item").notEmpty()], createPremade);
+router.put("/update/:id", [param("id").notEmpty().isUUID()], updatePremade);
+router.delete("/delete/:id", [param("id").isUUID()], deletePremadeById);
+router.get("/find-all", findAllPremade);
+router.delete("/delete-all", deleteAllPremade);
 
 module.exports = router;
