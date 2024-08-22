@@ -3,12 +3,17 @@ const app = express();
 const dotenv = require("dotenv");
 const routes = require("./routes/main-route");
 const SequelizeConnect = require("./database/connection");
+const bodyParser = require("body-parser");
+const morgan = require("morgan");
 dotenv.config();
 
+//middlewares
+app.use(bodyParser.json());
+app.use(morgan("dev"));
 app.use("/api/v1", routes);
 
 SequelizeConnect.sync({
-  force: true,
+  //   force: true,
 })
   .then(() => {
     app.listen(port, () => {
