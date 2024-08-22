@@ -25,9 +25,7 @@ const ToDo = connection.define(
   }
 );
 
-ToDo.belongsTo(User, {
-  foreignKey: "user_id",
-  targetKey: "id",
-  as: "todo",
-});
+ToDo.associate = (models) => {
+  ToDo.belongsTo(models.User, { foreignKey: "id", as: "todo" });
+};
 module.exports = ToDo;

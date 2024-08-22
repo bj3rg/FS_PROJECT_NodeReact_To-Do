@@ -1,7 +1,7 @@
-const { type } = require("os");
+// user-schema.js
 const connection = require("../database/connection");
 const Sequelize = require("sequelize");
-const ToDo = require("../models/toDo-schema");
+const ToDo = require("./toDo-schema");
 const User = connection.define("User", {
   id: {
     type: Sequelize.UUID,
@@ -15,6 +15,6 @@ const User = connection.define("User", {
   },
 });
 
-User.hasMany(ToDo);
+// Define the one-to-many association
 
 module.exports = User;
