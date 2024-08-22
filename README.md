@@ -1,6 +1,6 @@
 # ToDo
 
-ToDo by Burg is an app that replicates the functionality of basic to-do app... It's features are...
+ToDo by Burg is an app that replicates the functionality of basic to-do app... Its features are...
 
 ## Installation
 
