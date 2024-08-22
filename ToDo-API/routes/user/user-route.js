@@ -7,6 +7,7 @@ const {
   updateUser,
   deleteUser,
   findUser,
+  findAllUser,
 } = require("../../controllers/user-controller");
 
 router.post("/create", [body("name").notEmpty()], createUser);
@@ -17,5 +18,6 @@ router.put(
 );
 router.delete("/delete/:id", [param("id").notEmpty()], deleteUser);
 router.get("/find/:id", [param("id").notEmpty()], findUser);
+router.get("/find-all", findAllUser);
 
 module.exports = router;

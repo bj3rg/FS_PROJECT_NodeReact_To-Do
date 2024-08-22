@@ -103,3 +103,21 @@ exports.findUser = (req, res, next) => {
       next();
     });
 };
+
+exports.findAllUser = (req, res, next) => {
+  User.findAll()
+    .then((user) => {
+      if (!user || user.length === 0) {
+        return res.status(404).json({
+          message: "No user exist",
+        });
+      }
+      return res.status(200).json({
+        user,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      next();
+    });
+};
