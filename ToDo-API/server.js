@@ -13,7 +13,7 @@ app.use(morgan("dev"));
 app.use("/api/v1", routes);
 
 SequelizeConnect.sync({
-  //   force: true,
+  // force: true,
 })
   .then(() => {
     app.listen(port, () => {

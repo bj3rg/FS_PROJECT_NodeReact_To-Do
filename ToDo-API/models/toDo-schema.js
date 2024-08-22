@@ -18,6 +18,10 @@ const ToDo = connection.define(
       type: Sequelize.STRING,
       allowNull: false,
     },
+    isDone: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: false,
+    },
   },
   {
     timestamps: true,
